@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright Â© 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: Implements shared baseplayer class functionality
 //
@@ -1009,8 +1009,10 @@ float CBasePlayer::CalcRoll (const QAngle& angles, const Vector& velocity, float
 void CBasePlayer::CalcViewRoll( QAngle& eyeAngles )
 {
 	if ( GetMoveType() == MOVETYPE_NOCLIP )
-		return;
+        return;
 
-	float side = CalcRoll( GetAbsAngles(), GetAbsVelocity(), sv_rollangle.GetFloat(), sv_rollspeed.GetFloat() );
-	eyeAngles[ROLL] += side;
+- float side = CalcRoll( GetAbsAngles(), GetAbsVelocity(), sv_rollangle.GetFloat(), sv_rollspeed.GetFloat() );
++ float side = CalcRoll( MainViewAngles(), GetLocalVelocity(), sv_rollangle.GetFloat(), sv_rollspeed.GetFloat() );
+    eyeAngles[ROLL] += side;
 }
+
